@@ -1,0 +1,256 @@
+:root{
+    --font: 'Plus Jakarta Sans',system-ui, sans-serif;
+    --bg-fallback: #0b0c16;
+    --card-bg: rgba(22,24,38,0.65);
+    --card-hover: rgba(35,38,58,0.85);
+    --border: rgba(255,255,255,0.12);
+    --text-main: #ffffff;
+    --text-dim: #9aa0a6;
+    --accent: #6366f1;
+    --accent-hover: #4f46e5;
+    --danger: #ef4444;
+
+}
+*{
+    box-sizing: border-box;
+    margin:0;
+    padding:0;
+}
+body{
+    font-family: var(--font);
+    background-color: var(--bg-fallback);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height:100vh;
+    color:var(--text-main);
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position:relative;
+    overflow-x:hidden;
+    transition:background-image 0.5s ease-in-out;
+
+}
+.background-overlay{
+    position:fixed;
+    inset:0;
+    background:radial-gradient(circle at center, rgba(11,12,22,0.4) 0%, rgba(11,12,22,0.85) 100%);
+    z-index:1;
+}
+.dashboard{
+    position:relative;
+    z-index:2;
+    width:90%;
+    max-width: 720px;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding:24px 0 60px 0;
+
+}
+.headers{
+    text-align: center;
+
+}
+#clock{
+    font-size: size 4.5rem;
+    font-weight:700;
+    letter-spacing: 2px;
+    line-height: 1;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.4) ;
+
+}
+#greeting{
+    font-size: 1.15rem;
+    color:var(--text-dim);
+    margin-top: 8px;
+    font-weight:400;
+
+}
+.search-box{
+    width:100%;
+    position:relative;
+    display:flex;
+    align-items: center;
+
+}
+.search-icon{
+    position:absolute;
+    left:18px;
+    stroke: var(--text-dim);
+    pointer-events: none;
+}
+#search-input{
+    width:100%;
+    padding:10px 20px 16px 52px;
+    font-size: 1rem;
+    font-family: inherit;
+    color:var(--text-main);
+    background:var(--card-bg);
+    border:1px solid var(--border);
+    border-radius: 10000px;
+    backdrop-filter: blur(15px);
+    outline:none;
+    transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+
+}
+.search-input:focus{
+    border-color: rgba(255,255,255,0.35);
+    background: rgba(28,30,48,0.85);
+    box-shadoe: 0 0 0 rgba(99,102,241,0.2);
+
+}
+.bookmarks-section{
+    width:100%;
+
+}
+.bookmarks-header{
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 14px;
+
+}
+.bookmarks-header h2{
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-dim);
+    font-weight: 600;
+
+}
+.add-btn{
+    background:none;
+    border:1px solid var(--border);
+    color: var(--text-main);
+    padding:6px 14px;
+    border-radius:9999px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    cursor: pointer;
+    background:var(--card-bg);
+    backdrop-filter: blur(8px);
+    transition: background 0.2s, border-color 0.2s;
+
+}
+.add-btn:hover{
+    background:var(--card-hover);
+    border-color: rgba(255,255,255,0.3);
+
+}
+.bookmarks-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(130px,1fr));
+    gap:12px;
+
+}
+.bookmark-item{
+    position: relative;
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    gap: 10px;
+    padding:16px 12px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    backdrop-filter: blur(12px);
+    text-decoration: none;
+    color: var(--text-main);
+    transition: transform 0.2s, background 0.2s, border-color 0.2s;
+    
+}
+.bookmark-item:hover{
+    transform:translateY(-2px);
+    background: var(--card-bg);
+    border-color: rgba(255,255,255,0.25);
+
+}
+.bookmark-item img{
+    width:28px;
+    height:28px;
+    border-radius: 6px;
+    background: #ffffff;
+    padding: 2px;
+
+}
+.bookmark-item span{
+    font-size:0.85rem;
+    font-weight: 500;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+
+}
+.delete-bm-btn{
+    position:absolute;
+    top:4px;
+    right:6px;
+    background:none;
+    border:none;
+    color:var(--text-dim);
+    font-size: 14px;
+    cursor:pointer;
+    opacity:0;
+    transition: opacity 0.15s , color 0.15s;
+}
+.bookmark-item:hover .delete-bm-btn{
+    opacity:1;
+}
+.delete-bm-btn:hover{
+    color:var(--danger);
+}
+.apod-info{
+    position:fixed;
+    bottom:16px;
+    left:20px;
+    z-index: 2;
+    display:flex;
+    align-items: center;
+    gap: 8px;
+    padding:6px 14px;
+    border-radius: 9999px;
+    background:var(--card-bg);
+    border:1px solid var(--border);
+    backdrop-filter: blur(12px);
+    font-size:0.78rem;
+    color:var(--text-dim);
+    max-width: 320px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+}
+.apod-dot{
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #10b981;
+}
+.modal{
+    position:fixed;
+    inset:0;
+    background: rgba(0, 0,0,0.65);
+    backdrop-filter: blur(4px);
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.modal.hidden{
+    display:none;
+}
+.modal-card{
+    background:#191b29;
+    border:1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    width:90%;
+    max-width: 360px;
+
+}
