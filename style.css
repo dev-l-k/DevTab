@@ -77,10 +77,13 @@ body{
     align-items: center;
 
 }
-.search-icon{
-    position:absolute;
-    left:18px;
-    stroke: var(--text-dim);
+.search-icon {
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: var(--text-dim);
     pointer-events: none;
 }
 #search-input{
