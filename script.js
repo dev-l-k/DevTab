@@ -19,7 +19,7 @@ const urlInput=document.getElementById("bm-url");
 function updateClock(){
     const now = new Date();
     let hours = now.getHours();
-    const minutes = now.getMinutes();
+    let minutes = now.getMinutes();
     let ampm = "am";
     if (hours >= 12){
         ampm = "pm";
@@ -29,6 +29,10 @@ function updateClock(){
     hours = hours % 12;
     if (hours===0){
         hours = 12;
+    }
+
+    if (minutes<10){
+        minutes="0"+minutes;
     }
     const formattedHours = String(hours).padStart(2,'0');
     clockElement.innerHTML= `${formattedHours}:${minutes} <span class ='ampm'>${ampm}</span>`;
@@ -64,8 +68,8 @@ async function loadNASAWallpaper() {
 
 }
 function applyBackground(url,title){
-    document.body.style.backgroundImage = 'url(${url})';
-    apodTitleElement.textContent = "${title}";
+    document.body.style.backgroundImage = `url("${url}")`;
+    apodTitleElement.textContent = title;
 
 }
 function getBookmarks(){
@@ -88,10 +92,10 @@ function renderBookmarks(){
         }catch{
             hostname = bm.url;
         }
-        const faviconUrl = "https://www.google.com/s2/favicons?domain=${hostname}&sz=64";
+        const faviconUrl = `https://www.google.com/s2/favicons?domain=${hostname}&sz=64`;
         const card = document.createElement('a');
         card.className='bookmark-item';
-        card.href='bm.url';
+        card.href=bm.url;
         card.target='_blank';
         card.rel = 'noopener noreferer';
         card.innerHTML = `
@@ -100,7 +104,7 @@ function renderBookmarks(){
         <button class = "delete-bm-btn" data-index = "${index}">X</button>
 
         `;
-        card.querySelector('.delete-bm-btn').addEventListener("click",(e){
+        card.querySelector('.delete-bm-btn').addEventListener("click", (e) => {
             e.preventDefault();
             e.stopPropagation();
             deleteBookmark(index);

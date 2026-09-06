@@ -51,12 +51,12 @@ body{
     padding:24px 0 60px 0;
 
 }
-.headers{
+.header{
     text-align: center;
 
 }
 #clock{
-    font-size: size 4.5rem;
+    font-size: 4.5rem;
     font-weight:700;
     letter-spacing: 2px;
     line-height: 1;
@@ -97,10 +97,10 @@ body{
     transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
 
 }
-.search-input:focus{
+#search-input:focus{
     border-color: rgba(255,255,255,0.35);
     background: rgba(28,30,48,0.85);
-    box-shadoe: 0 0 0 rgba(99,102,241,0.2);
+    box-shadow: 0 0 0 rgba(99,102,241,0.2);
 
 }
 .bookmarks-section{
