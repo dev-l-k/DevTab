@@ -37,7 +37,7 @@ function updateClock(){
     if (hr>=5&&hr<12){
         greeting="Good Morning";
 
-    }elseif (hr>=12&&hr<18){
+    }else if (hr>=12&&hr<18){
         greeting="Good Aternoon";
     
     }
