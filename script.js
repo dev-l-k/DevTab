@@ -59,7 +59,7 @@ async function loadNASAWallpaper() {
         }
     }
     
-        const res = await fetch("https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY");
+        const res = await fetch("/api/apod");
         const data = await res.json();
         const bgUrl = data.media_type === "image" ? (data.hdurl || data.url):null;
         const title= data.title || 'NASA Astronomy Picture';
