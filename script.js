@@ -20,11 +20,11 @@ function updateClock(){
     const now = new Date();
     let hours = now.getHours();
     const minutes = now.getMinutes();
-    let ampm = "AM";
+    let ampm = "am";
     if (hours >= 12){
-        ampm = "PM";
+        ampm = "pm";
     }else{
-        ampm = "AM";
+        ampm = "am";
     }
     hours = hours % 12;
     if (hours===0){
@@ -43,4 +43,20 @@ function updateClock(){
     }
     greetingElement.textContent = `${greeting}, devloper`;
     
+}
+async function loadNASAWallpaper() {
+    const today = new Date().toISOString().split('T')[0];
+    const cache = localStorage.getItem('devtab_apod');
+    if (cache){
+        const parsed = JSON.parse(cache);
+        if (parsed.date === today && parsed.url){
+            applyBackground(parsed.url,parsed.title);
+            return;
+        }
+    }
+    try{
+        const res = await fetch("https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY");
+        const data = await res.json();
+        const bgUrl =await data.media_type === "image" ? (data.hdurl || data.url);
+    }
 }
