@@ -117,4 +117,39 @@ function addBookmark(name,url){
         formattedUrl="https://${formattedUrl}";
         
     }
+    const bookmarks=getBookmarks();
+    bookmarks.push({name:name.trim(),url:formattedUrl});
+    saveBookmarks(bookmarks);
 }
+function deleteBookmark(index){
+    const bookmarks = getBookmarks();
+    bookmarks.splice(index,1);
+    saveBookmarks(bookmarks);
+
+}
+openModalBtn.addEventListener("click",() => {
+    modal.classList.remove('hidden');
+});
+closeModalBtn.addEventListener("click",()=>{
+    modal.classList.add('hidden');
+
+});
+modal.addEventListener("click",(e)=>{
+    if (e.target===modal){
+        modal.classList.add('hidden');
+        bookmarkForm.reset();
+
+    }
+
+});
+bookmarkForm.addEventListener("submit",(e)=>{
+    e.preventDefault();
+    addBookmark(titleInput.value,urlInput.value);
+    modal.classList.add('hidden');
+    bookmarkForm.reset();
+
+});
+setInterval(updateClock,1000);
+updateClock();
+loadNASAWallpaper();
+renderBookmarks();
